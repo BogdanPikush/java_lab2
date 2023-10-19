@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.UUID;
+
 public abstract class Item {
     private String title;
     private String uniqueID;
@@ -7,7 +9,7 @@ public abstract class Item {
 
     public Item(String title, String uniqueID) {
         this.title = title;
-        this.uniqueID = uniqueID;
+        this.uniqueID = generateUniqueID();
         this.isBorrowed = false;
     }
 
@@ -29,5 +31,16 @@ public abstract class Item {
 
     protected void setBorrowed(boolean borrowed) {
         isBorrowed = borrowed;
+    }
+
+    private static int lastUsedID = 0;
+
+    private String generateUniqueID() {
+
+        String uuid = UUID.randomUUID().toString();
+
+        String uniqueID = "ID" + uuid.substring(0, 8) + lastUsedID;
+        lastUsedID++;
+        return uniqueID;
     }
 }
