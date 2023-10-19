@@ -26,4 +26,8 @@ public abstract class Item {
     public abstract void borrowItem();
 
     public abstract void returnItem();
+
+    protected void setBorrowed(boolean borrowed) {
+        isBorrowed = borrowed;
+    }
 }
